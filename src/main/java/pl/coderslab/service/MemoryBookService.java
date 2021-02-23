@@ -40,11 +40,29 @@ public class MemoryBookService {
         list.add(book);
     }
 
-    public void deleteBook(Long id){
+    public void deleteBook(Long id) {
         List<Book> result = list.stream()
                 .filter(book -> !book.getId().equals(id))
                 .collect(Collectors.toList());
-        list=result;
+        list = result;
     }
+
+    public void updateBook(Book updatedBook) {
+        List<Book> updatedList = list.stream()
+                .map(book -> {
+                    if (book.getId().equals(updatedBook.getId())) {
+                        book.setTitle(updatedBook.getTitle());
+                        book.setType(updatedBook.getType());
+                        book.setPublisher(updatedBook.getPublisher());
+                        book.setIsbn(updatedBook.getIsbn());
+                        book.setAuthor(updatedBook.getAuthor());
+                    }
+                    return book;
+
+                })
+                .collect(Collectors.toList());
+        list = updatedList;
+    }
+
 
 }

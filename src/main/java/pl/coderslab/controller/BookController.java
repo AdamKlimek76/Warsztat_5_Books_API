@@ -36,15 +36,21 @@ public class BookController {
     @PostMapping("")
     public void addBook(@RequestBody Book book) {
         memoryBookService.addBook(book);
-        }
-
-
-        @DeleteMapping("/{id}")
-    public void deleteBookById(@PathVariable Long id){
-        memoryBookService.deleteBook(id);
-        }
-
     }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteBookById(@PathVariable Long id) {
+        memoryBookService.deleteBook(id);
+    }
+
+
+    @PutMapping("")
+    public void deleteBook(@RequestBody Book updatedBook) {
+        memoryBookService.updateBook(updatedBook);
+    }
+
+}
 
 
 
